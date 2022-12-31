@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reader", "Reader\Reader.csproj", "{78ECFB85-58B7-433B-A303-932FF2C3772C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replicator", "Replicator\Replicator.csproj", "{FB5DAA81-30BE-49D4-A757-A6ECB78CDCBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,15 @@ Global
 		{78ECFB85-58B7-433B-A303-932FF2C3772C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78ECFB85-58B7-433B-A303-932FF2C3772C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78ECFB85-58B7-433B-A303-932FF2C3772C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5DAA81-30BE-49D4-A757-A6ECB78CDCBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5DAA81-30BE-49D4-A757-A6ECB78CDCBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5DAA81-30BE-49D4-A757-A6ECB78CDCBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5DAA81-30BE-49D4-A757-A6ECB78CDCBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EE69F29-717E-4BB0-91CD-30032A3A8412}
 	EndGlobalSection
 EndGlobal
