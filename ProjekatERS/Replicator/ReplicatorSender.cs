@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Replicator
 {
-    public class Replicator_sender
+    public class ReplicatorSender
     {
 
     }
