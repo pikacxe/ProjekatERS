@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataModel
 {
-    class Potrosnja
+    public class Potrosnja
     {
+
+
     }
 }

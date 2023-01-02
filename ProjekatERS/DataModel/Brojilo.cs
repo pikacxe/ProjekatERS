@@ -16,5 +16,15 @@ namespace DataModel
         private int PostanskiBroj;
         private string Grad;
 
+        public Brojilo(int iD, string imeKorisnika, string prezimeKorisnika, string ulica, int broj, int postanskiBroj, string grad)
+        {
+            ID = iD;
+            ImeKorisnika = imeKorisnika ?? throw new ArgumentNullException(nameof(imeKorisnika));
+            PrezimeKorisnika = prezimeKorisnika ?? throw new ArgumentNullException(nameof(prezimeKorisnika));
+            Ulica = ulica ?? throw new ArgumentNullException(nameof(ulica));
+            Broj = broj;
+            PostanskiBroj = postanskiBroj;
+            Grad = grad ?? throw new ArgumentNullException(nameof(grad));
+        }
     }
 }
