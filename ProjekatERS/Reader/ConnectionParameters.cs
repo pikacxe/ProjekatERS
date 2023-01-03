@@ -10,7 +10,7 @@ namespace Reader
     public class ConnectionParameters
     {
 
-        private static string connectionString = "Data Source=spasic.co.rs,25565;Initial Catalog=ERS_projekat;User ID=ers_projekat;Password=radimo123.";
+        private static string connectionString = "";
         private SqlConnection instance;
 
         public SqlConnection GetConnection()
