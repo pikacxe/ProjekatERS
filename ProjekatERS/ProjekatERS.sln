@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIInterfaceTest", "UIInterf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{16AE4815-2974-49CF-8436-0E242401D686}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModelTest", "DataModelTest\DataModelTest.csproj", "{2983A61E-D06D-49E5-B1AD-C8C0AFBDB828}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{16AE4815-2974-49CF-8436-0E242401D686}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16AE4815-2974-49CF-8436-0E242401D686}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16AE4815-2974-49CF-8436-0E242401D686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2983A61E-D06D-49E5-B1AD-C8C0AFBDB828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2983A61E-D06D-49E5-B1AD-C8C0AFBDB828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2983A61E-D06D-49E5-B1AD-C8C0AFBDB828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2983A61E-D06D-49E5-B1AD-C8C0AFBDB828}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

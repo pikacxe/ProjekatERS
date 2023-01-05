@@ -7,13 +7,22 @@ using System.Data.SqlClient;
 
 namespace Reader
 {
-    public class ConnectionParameters
+    public class ConnectionParameters : IDisposable
     {
 
         private static string connectionString = "Data Source=spasic.co.rs,25565;Initial Catalog=ERS_projekat;User ID=ers_projekat;Password=radimo123.";
-        private SqlConnection instance;
+        private static SqlConnection instance;
 
-        public SqlConnection GetConnection()
+        public void Dispose()
+        {
+            if(instance != null)
+            {
+                instance.Close();
+                instance.Dispose();
+            }
+        }
+
+        public static SqlConnection GetConnection()
         {
             try
             {
@@ -22,7 +31,7 @@ namespace Reader
             }
             catch(Exception e)
             {
-                Console.WriteLine("Greska prilikom povezivanja sa bazom!\n" + e.Message);
+                Console.WriteLine("Greska prilikom povezivanja sa bazom!\nError stack:" + e.Message);
             }
             return instance;
         }
