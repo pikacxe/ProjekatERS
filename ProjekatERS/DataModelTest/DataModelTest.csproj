@@ -4,7 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+<<<<<<< HEAD
     <ProjectGuid>{4F6A325B-C1D1-4E1A-9486-8F77669BD3DC}</ProjectGuid>
+=======
+    <ProjectGuid>{2983A61E-D06D-49E5-B1AD-C8C0AFBDB828}</ProjectGuid>
+>>>>>>> fd87027ef539e05c03c988922ae62089a9c9260f
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataModelTest</RootNamespace>
