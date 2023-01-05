@@ -8,23 +8,69 @@ namespace DataModel
 {
     public class Brojilo
     {
-        private int ID;
-        private string ImeKorisnika;
-        private string PrezimeKorisnika;
-        private string Ulica;
-        private int Broj;
-        private int PostanskiBroj;
-        private string Grad;
+        private int _ID;
+        private string _ImeKorisnika;
+        private string _PrezimeKorisnika;
+        private string _Ulica;
+        private int _Broj;
+        private int _PostanskiBroj;
+        private string _Grad;
 
         public Brojilo(int iD, string imeKorisnika, string prezimeKorisnika, string ulica, int broj, int postanskiBroj, string grad)
         {
-            ID = iD;
-            ImeKorisnika = imeKorisnika ?? throw new ArgumentNullException(nameof(imeKorisnika));
-            PrezimeKorisnika = prezimeKorisnika ?? throw new ArgumentNullException(nameof(prezimeKorisnika));
-            Ulica = ulica ?? throw new ArgumentNullException(nameof(ulica));
-            Broj = broj;
-            PostanskiBroj = postanskiBroj;
-            Grad = grad ?? throw new ArgumentNullException(nameof(grad));
+            _ID = iD;
+            _ImeKorisnika = imeKorisnika ?? throw new ArgumentNullException(nameof(imeKorisnika));
+            _PrezimeKorisnika = prezimeKorisnika ?? throw new ArgumentNullException(nameof(prezimeKorisnika));
+            _Ulica = ulica ?? throw new ArgumentNullException(nameof(ulica));
+            _Broj = broj;
+            _PostanskiBroj = postanskiBroj;
+            _Grad = grad ?? throw new ArgumentNullException(nameof(grad));
+        }
+
+        public int ID {
+        get { return _ID; } 
+        set { _ID = value; }
+        }
+
+        public string ImeKorisnika
+        {
+            get { return _ImeKorisnika; }
+            set { ImeKorisnika = value; }
+        }
+
+        public string PrezimeKorisnika
+        {
+            get { return _PrezimeKorisnika; }
+            set { PrezimeKorisnika = value; }
+        }
+
+        public string Ulica
+        {
+            get { return _Ulica; }
+            set { Ulica = value; }
+        }
+
+        public int Broj
+        {
+            get { return _Broj; }
+            set { _Broj = value; }
+        }
+
+        public int PostanskiBroj
+        {
+            get { return _PostanskiBroj; }
+            set { _PostanskiBroj = value; }
+        }
+
+        public string Grad
+        {
+            get { return _Grad; }
+            set { Grad = value; }
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
         }
     }
 }
