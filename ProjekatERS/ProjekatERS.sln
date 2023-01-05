@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32929.386
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reader", "Reader\Reader.csproj", "{78ECFB85-58B7-433B-A303-932FF2C3772C}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIInterfaceTest", "UIInterfaceTest\UIInterfaceTest.csproj", "{804F4431-4474-439A-AC96-987BBF3CF66B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{16AE4815-2974-49CF-8436-0E242401D686}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModelTest", "DataModelTest\DataModelTest.csproj", "{B0B14C72-B6DD-48E5-8F3E-B7B523A09741}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{16AE4815-2974-49CF-8436-0E242401D686}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16AE4815-2974-49CF-8436-0E242401D686}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16AE4815-2974-49CF-8436-0E242401D686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0B14C72-B6DD-48E5-8F3E-B7B523A09741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0B14C72-B6DD-48E5-8F3E-B7B523A09741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0B14C72-B6DD-48E5-8F3E-B7B523A09741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0B14C72-B6DD-48E5-8F3E-B7B523A09741}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
