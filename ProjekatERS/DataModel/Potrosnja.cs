@@ -9,11 +9,9 @@ namespace DataModel
     public class Potrosnja
     {
         private int _IDB;
-<<<<<<< HEAD
-        private double _Potrosnjab;
-=======
+        
         private double _PotrosnjaB;
->>>>>>> fd87027ef539e05c03c988922ae62089a9c9260f
+
         private int _Mesec;
 
         public Potrosnja(int iDB, double potrosnjab, int mesec)
