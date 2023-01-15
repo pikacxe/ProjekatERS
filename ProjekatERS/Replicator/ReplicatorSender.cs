@@ -8,9 +8,23 @@ namespace Replicator
 {
     public class ReplicatorSender
     {
+        private ReplicatorReceiver recv;
+
+        public ReplicatorSender()
+        {
+            recv = new ReplicatorReceiver();
+        }
+
+        public void GetData(int id, double potrosnja)
+        {
+            Potrosnja potr = new Potrosnja(id, potrosnja, DateTime.Now.Month);
+
+            recv.GetPotrosnja(potr);
+        }
 
     }
 }
+
 
 
 /*Replicator Sender:
