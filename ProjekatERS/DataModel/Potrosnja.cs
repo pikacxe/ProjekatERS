@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,27 +12,45 @@ namespace DataModel
         private double _PotrosnjaB;
         private int _Mesec;
 
-        public int IDB { get 
+        public Potrosnja(int iDB, double potrosnjab, int mesec)
+        {
+            _IDB = iDB;
+            _Potrosnjab = potrosnjab;
+            _Mesec = mesec;
+        }
+
+        public Potrosnja()
+        {
+            _IDB = -1;
+            _PotrosnjaB = 0;
+            _Mesec = -1;
+        }
+        
+        public int IDB
+        {
+            get
             {
-                return _IDB;    
+                return _IDB;
             }
             set 
-            {
-                _IDB= value;
+            { 
+                _IDB = value;
             }
         }
+
 
         public double PotrosnjaB
         {
             get
             {
-                return _PotrosnjaB;
+                return _Potrosnjab;
             }
             set
             {
-                _PotrosnjaB = value;
+                _Potrosnjab = value;
             }
         }
+
         public int Mesec
         {
             get
@@ -43,14 +61,6 @@ namespace DataModel
             {
                 _Mesec = value;
             }
-        }
-
-
-        public Potrosnja(int iDB, double potrosnjaB, int mesec)
-        {
-            _IDB = iDB;
-            _PotrosnjaB = potrosnjaB;
-            _Mesec = mesec;
         }
 
         public override string ToString()

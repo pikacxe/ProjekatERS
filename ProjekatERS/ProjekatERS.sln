@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.4.33205.214
+VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reader", "Reader\Reader.csproj", "{78ECFB85-58B7-433B-A303-932FF2C3772C}"
 EndProject
@@ -69,6 +69,14 @@ Global
 		{B0B14C72-B6DD-48E5-8F3E-B7B523A09741}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0B14C72-B6DD-48E5-8F3E-B7B523A09741}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0B14C72-B6DD-48E5-8F3E-B7B523A09741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F6A325B-C1D1-4E1A-9486-8F77669BD3DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F6A325B-C1D1-4E1A-9486-8F77669BD3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F6A325B-C1D1-4E1A-9486-8F77669BD3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F6A325B-C1D1-4E1A-9486-8F77669BD3DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2983A61E-D06D-49E5-B1AD-C8C0AFBDB828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2983A61E-D06D-49E5-B1AD-C8C0AFBDB828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2983A61E-D06D-49E5-B1AD-C8C0AFBDB828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2983A61E-D06D-49E5-B1AD-C8C0AFBDB828}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
