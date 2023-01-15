@@ -52,10 +52,6 @@
       <Project>{1ea47e29-7846-461c-b780-ddb29db73ac3}</Project>
       <Name>Replicator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UIInterface\UIInterface.csproj">
-      <Project>{ace70b51-0d6a-407d-b7d7-1b8e5b8cf98f}</Project>
-      <Name>UIInterface</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

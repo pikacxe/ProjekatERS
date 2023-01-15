@@ -11,16 +11,48 @@ namespace Writer
 {
     public class Writer
     {
+        private bool stanje;
         private ReplicatorSender sender;
+
+        public void Ukljuci()
+        {
+            stanje = true;
+        }
+
+        public void Iskljuci()
+        {
+            stanje = false;
+        }
 
         public Writer()
         {
+            stanje = false;
             sender = new ReplicatorSender();
         }
 
         public void AcceptPotrosnja(int id, double potrosnja)
         {
-            sender.GetData(id, potrosnja);
+            try
+            {
+                if (!stanje)
+                {
+                    throw new Exception("Writer trenutno nije ukljucen. Ukljucite pre koriscenja.");
+                }
+                if (id < 0)
+                {
+                    throw new ArgumentException("Id nije validan.");
+                }
+                if (potrosnja < 0)
+                {
+                    throw new ArgumentException("Potrosnja nije validna.");
+                }
+                sender.GetData(id, potrosnja);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

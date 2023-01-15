@@ -15,7 +15,7 @@ namespace DataModel
         public Potrosnja(int iDB, double potrosnjab, int mesec)
         {
             _IDB = iDB;
-            _Potrosnjab = potrosnjab;
+            _PotrosnjaB = potrosnjab;
             _Mesec = mesec;
         }
 
@@ -43,11 +43,11 @@ namespace DataModel
         {
             get
             {
-                return _Potrosnjab;
+                return _PotrosnjaB;
             }
             set
             {
-                _Potrosnjab = value;
+                _PotrosnjaB = value;
             }
         }
 
