@@ -45,5 +45,15 @@
     <Compile Include="ReplicatorReceiver.cs" />
     <Compile Include="ReplicatorSender.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
+      <Project>{16AE4815-2974-49CF-8436-0E242401D686}</Project>
+      <Name>DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reader\Reader.csproj">
+      <Project>{78ecfb85-58b7-433b-a303-932ff2c3772c}</Project>
+      <Name>Reader</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

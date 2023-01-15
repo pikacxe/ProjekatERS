@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -74,7 +74,6 @@ namespace DataModel
                 _Broj = value;
             }
         }
-
         public int PostanskiBroj
         {
             get
@@ -86,7 +85,6 @@ namespace DataModel
                 _PostanskiBroj = value;
             }
         }
-
         public string Grad
         {
             get
@@ -101,7 +99,6 @@ namespace DataModel
         public Brojilo(int iD, string imeKorisnika, string prezimeKorisnika, string ulica, int broj, int postanskiBroj, string grad)
         {
             _ID = iD;
-<<<<<<< HEAD
             _ImeKorisnika = imeKorisnika ?? throw new ArgumentNullException(nameof(imeKorisnika));
             _PrezimeKorisnika = prezimeKorisnika ?? throw new ArgumentNullException(nameof(prezimeKorisnika));
             _Ulica = ulica ?? throw new ArgumentNullException(nameof(ulica));
@@ -110,55 +107,11 @@ namespace DataModel
             _Grad = grad ?? throw new ArgumentNullException(nameof(grad));
         }
 
-        public int ID {
-        get { return _ID; } 
-        set { _ID = value; }
-        }
-
-        public string ImeKorisnika
-        {
-            get { return _ImeKorisnika; }
-            set { ImeKorisnika = value; }
-        }
-
-        public string PrezimeKorisnika
-        {
-            get { return _PrezimeKorisnika; }
-            set { PrezimeKorisnika = value; }
-        }
-
-        public string Ulica
-        {
-            get { return _Ulica; }
-            set { Ulica = value; }
-        }
-
-        public int Broj
-        {
-            get { return _Broj; }
-            set { _Broj = value; }
-        }
-
-        public int PostanskiBroj
-        {
-            get { return _PostanskiBroj; }
-            set { _PostanskiBroj = value; }
-        }
-
         public string Grad
         {
             get { return _Grad; }
             set { Grad = value; }
-=======
-            _ImeKorisnika = imeKorisnika;
-            _PrezimeKorisnika = prezimeKorisnika;
-            _Ulica = ulica;
-            _Broj = broj;
-            _PostanskiBroj = postanskiBroj;
-            _Grad = grad;
->>>>>>> fd87027ef539e05c03c988922ae62089a9c9260f
         }
-
         public override string ToString()
         {
             return base.ToString();
