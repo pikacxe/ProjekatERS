@@ -28,10 +28,10 @@ namespace Writer
             return stanje;
         }
 
-        public Writer()
+        public Writer(ReplicatorSender sender)
         {
             stanje = false;
-            sender = new ReplicatorSender();
+            this.sender = sender;
         }
 
         public void AcceptPotrosnja(int id, double potrosnja)

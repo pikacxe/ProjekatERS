@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Reader;
+using System.Threading;
 
 namespace Replicator
 {
@@ -15,17 +16,18 @@ namespace Replicator
         private List<Potrosnja> potrosnje;
         private List<Reader.Reader> readers;
         private int period;
-        private DateTime staroVreme;
-        public ReplicatorReceiver()
+        private Thread thread;
+        public ReplicatorReceiver(int numOfReaders,int second)
         {
             potrosnje = new List<Potrosnja>();
             readers = new List<Reader.Reader>();
-            period = 5;
-
-            for(int i = 0; i < 10; i++)
+            period = second;
+            for(int i = 0; i < numOfReaders; i++)
             {
                 readers.Add(new Reader.Reader());
             }
+            thread = new Thread(new ThreadStart(MeriVreme));
+            thread.Start();
         }
 
         public void GetPotrosnja(Potrosnja potrosnja)
@@ -48,17 +50,13 @@ namespace Replicator
         {
             try
             {
-                if (potrosnje.Count <= 0)
-                {
-                    return;
-                }
-                if (potrosnje[0] != null)
+                if (potrosnje.Count > 0)
                 {
                     Random random = new Random();
-                    int i = random.Next(0, 10);
+                    int i = random.Next(0, readers.Count);
                     readers[i].SavePotrosnja(potrosnje[0]);
+                    potrosnje.RemoveAt(0);
                 }
-
             }
             catch (ArgumentNullException ex)
             {
@@ -68,13 +66,17 @@ namespace Replicator
 
         public void MeriVreme()
         {
-            if (DateTime.Now.Second >= staroVreme.Second)
+            while (true)
             {
                 SavePotrosnja();
-                staroVreme = DateTime.Now;
-                staroVreme.AddSeconds(period);
+                Thread.Sleep(1000 * period);
+                // Console.WriteLine("Radim!"); // For debugging purposes
             }
         }
 
+        public void StopThread()
+        {
+            thread.Abort();
+        }
     }
 }

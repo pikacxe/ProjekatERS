@@ -11,9 +11,9 @@ namespace Replicator
     {
         private ReplicatorReceiver recv;
 
-        public ReplicatorSender()
+        public ReplicatorSender(ReplicatorReceiver receiver)
         {
-            recv = new ReplicatorReceiver();
+            recv =receiver;
         }
 
         public void GetData(int id, double potrosnja)

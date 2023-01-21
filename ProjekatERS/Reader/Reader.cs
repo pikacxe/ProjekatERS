@@ -15,10 +15,11 @@ namespace Reader
         {
 
         }
-        public Potrosnja ReadPotrosnja(int idp)
+        public IEnumerable<Potrosnja> ReadPotrosnjaBrojila(int idp)
         {
-            // TO-DO read potrosnja from DB
+            
             string query = "select * from Potrosnja where IDB = @id";
+            List<Potrosnja> potrosnje = new List<Potrosnja>();
             using (SqlConnection conn = ConnectionParameters.GetConnection())
             {
                 conn.Open();
@@ -28,14 +29,15 @@ namespace Reader
                     comm.Parameters.AddWithValue("id", idp);
                     using (SqlDataReader reader = comm.ExecuteReader())
                     {
-                        Potrosnja p = new Potrosnja();
                         while (reader.Read())
                         {
+                            Potrosnja p = new Potrosnja();
                             p.IDB = reader.GetInt32(0);
                             p.PotrosnjaB = reader.GetDouble(1);
                             p.Mesec = reader.GetInt32(2);
+                            potrosnje.Add(p);
                         }
-                        return p;
+                        return potrosnje;
                     }
                 }
             }
@@ -45,7 +47,7 @@ namespace Reader
 
         private int ExistsById(int id, SqlConnection conn)
         {
-            string query = "select count(id) from Potrosnja where IDB = @id";
+            string query = "select count(IDB) from Potrosnja where IDB = @id";
             using (SqlCommand comm = conn.CreateCommand())
             {
                 comm.CommandText = query;
@@ -73,5 +75,33 @@ namespace Reader
         }
 
         // TO-DO Reports
+
+
+        public IEnumerable<Potrosnja> potrosnjaPoUlici(string ulica)
+        {
+            string query = "select * from Potrosnja where Ulica = @ulica";
+            List<Potrosnja> potrosnje = new List<Potrosnja>();
+            using (SqlConnection conn = ConnectionParameters.GetConnection())
+            {
+                conn.Open();
+                using (SqlCommand comm = conn.CreateCommand())
+                {
+                    comm.CommandText = query;
+                    comm.Parameters.AddWithValue("ulica", ulica);
+                    using (SqlDataReader reader = comm.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Potrosnja p = new Potrosnja();
+                            p.IDB = reader.GetInt32(0);
+                            p.PotrosnjaB = reader.GetDouble(1);
+                            p.Mesec = reader.GetInt32(2);
+                            potrosnje.Add(p);
+                        }
+                        return potrosnje;
+                    }
+                }
+            }
+        }
     }
 }

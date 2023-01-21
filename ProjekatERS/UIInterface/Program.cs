@@ -6,19 +6,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using Writer;
 using Replicator;
+using DataModel;
 
 namespace UIInterface
 {
     public class Program
     {
         private static List<Writer.Writer> writers = new List<Writer.Writer>();
-        private static ReplicatorReceiver receiver = new ReplicatorReceiver();
+        private static ReplicatorReceiver receiver = new ReplicatorReceiver(10,5);
+        private static ReplicatorSender sender = new ReplicatorSender(receiver);
         public static void Main(string[] args)
         {
-            ThreadStart ts = new ThreadStart(receiver.MeriVreme);
-            Thread t = new Thread(ts);
-            t.Start();
-
             string unos;
             do
             {
@@ -53,7 +51,7 @@ namespace UIInterface
 
                 }
             } while (!(unos.ToUpper().Equals("X")));
-            t.Abort();
+            receiver.StopThread();
         }
         public static void UnosPotrosnje()
         {
@@ -68,12 +66,22 @@ namespace UIInterface
             Console.WriteLine("Podaci prosledjeni slobodnom writeru");
         }
         public static void IzvestajUlica()
-        { }
+        {
+            Console.WriteLine("Unesite ulicu za pretragu:");
+            string ulica = Console.ReadLine();
+            // TO-DO ispis po mesecima
+        }
         public static void IzvestajBrojilo()
-        { }
+        {
+            Console.WriteLine("Uneiste id brojila za pretragu:");
+            int id;
+            int.TryParse(Console.ReadLine(), out id);
+
+            // TO-DO ispis po mesecima
+        }
         public static void UpaliWriter() 
         {
-            Writer.Writer writer = new Writer.Writer();
+            Writer.Writer writer = new Writer.Writer(sender);
             writer.Ukljuci();
             writers.Add(writer);
         
