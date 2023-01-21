@@ -107,11 +107,6 @@ namespace DataModel
             _Grad = grad ?? throw new ArgumentNullException(nameof(grad));
         }
 
-        public string Grad
-        {
-            get { return _Grad; }
-            set { Grad = value; }
-        }
         public override string ToString()
         {
             return base.ToString();

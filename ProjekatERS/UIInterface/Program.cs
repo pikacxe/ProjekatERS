@@ -44,7 +44,7 @@ namespace UIInterface
                         break;
 
                 }
-            } while (unos.ToUpper().Equals("X"));
+            } while (!(unos.ToUpper().Equals("X")));
         }
         public static void UnosPotrosnje()
         { 
