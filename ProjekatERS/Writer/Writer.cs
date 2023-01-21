@@ -23,6 +23,10 @@ namespace Writer
         {
             stanje = false;
         }
+        public bool getStanje()
+        {
+            return stanje;
+        }
 
         public Writer()
         {

@@ -13,13 +13,19 @@ namespace Replicator
     {
 
         private List<Potrosnja> potrosnje;
-        private Reader.Reader[] readers;
+        private List<Reader.Reader> readers;
         private int period;
         private DateTime staroVreme;
         public ReplicatorReceiver()
         {
             potrosnje = new List<Potrosnja>();
-            readers = new Reader.Reader[10];
+            readers = new List<Reader.Reader>();
+            period = 5;
+
+            for(int i = 0; i < 10; i++)
+            {
+                readers.Add(new Reader.Reader());
+            }
         }
 
         public void GetPotrosnja(Potrosnja potrosnja)
@@ -42,14 +48,16 @@ namespace Replicator
         {
             try
             {
-                if (potrosnje[1] == null)
+                if (potrosnje.Count <= 0)
                 {
-                    throw new ArgumentNullException("Potrosnja ne sme biti null");
+                    return;
                 }
-                Random random = new Random();
-                int i = random.Next(0, 10);
-                readers[i].SavePotrosnja(potrosnje[1]); //TODO srediti data setove 
-
+                if (potrosnje[0] != null)
+                {
+                    Random random = new Random();
+                    int i = random.Next(0, 10);
+                    readers[i].SavePotrosnja(potrosnje[0]);
+                }
 
             }
             catch (ArgumentNullException ex)
@@ -58,7 +66,7 @@ namespace Replicator
             }
         }
 
-        private void MeriVreme()
+        public void MeriVreme()
         {
             if (DateTime.Now.Second >= staroVreme.Second)
             {
