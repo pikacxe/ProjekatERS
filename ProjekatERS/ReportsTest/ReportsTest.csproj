@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B0B14C72-B6DD-48E5-8F3E-B7B523A09741}</ProjectGuid>
+    <ProjectGuid>{3F3D208A-2D7B-4274-9240-F6C672042232}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataModelTest</RootNamespace>
-    <AssemblyName>DataModelTest</AssemblyName>
+    <RootNamespace>ReportsTest</RootNamespace>
+    <AssemblyName>ReportsTest</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModelTest.cs" />
+    <Compile Include="ReportsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
