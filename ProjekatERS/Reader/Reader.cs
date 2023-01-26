@@ -17,7 +17,10 @@ namespace Reader
         }
         public IEnumerable<Potrosnja> ReadPotrosnjaBrojila(int idp)
         {
-            
+            if (idp <= 0)
+            {
+                throw new ArgumentNullException("ID mora biti veci od 0");
+            }
             string query = "select * from Potrosnja where IDB = @id";
             List<Potrosnja> potrosnje = new List<Potrosnja>();
             using (SqlConnection conn = ConnectionParameters.GetConnection())
@@ -57,7 +60,10 @@ namespace Reader
         }
         public void SavePotrosnja(Potrosnja potrosnja)
         {
-            // TO-DO save potrosnja to DB
+            if(potrosnja == null)
+            {
+                throw new ArgumentNullException("Potrosnja ne sme biti null!");
+            }
             string inser_query = "insert into Potrosnja(Potrosnja,Mesec,IDB) values ( @potrosnja, @mesec, @id)";
             string update_query = "update Potrosnja set Potrosnja=@potrosnja, Mesec=@mesec where IDB = @id";
             using (SqlConnection conn = ConnectionParameters.GetConnection())
@@ -70,36 +76,6 @@ namespace Reader
                     comm.Parameters.AddWithValue("mesec", potrosnja.Mesec);
                     comm.Parameters.AddWithValue("id", potrosnja.IDB);
                     comm.ExecuteNonQuery();
-                }
-            }
-        }
-
-        // TO-DO Reports
-
-
-        public IEnumerable<Potrosnja> potrosnjaPoUlici(string ulica)
-        {
-            string query = "select * from Potrosnja where Ulica = @ulica";
-            List<Potrosnja> potrosnje = new List<Potrosnja>();
-            using (SqlConnection conn = ConnectionParameters.GetConnection())
-            {
-                conn.Open();
-                using (SqlCommand comm = conn.CreateCommand())
-                {
-                    comm.CommandText = query;
-                    comm.Parameters.AddWithValue("ulica", ulica);
-                    using (SqlDataReader reader = comm.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Potrosnja p = new Potrosnja();
-                            p.IDB = reader.GetInt32(0);
-                            p.PotrosnjaB = reader.GetDouble(1);
-                            p.Mesec = reader.GetInt32(2);
-                            potrosnje.Add(p);
-                        }
-                        return potrosnje;
-                    }
                 }
             }
         }

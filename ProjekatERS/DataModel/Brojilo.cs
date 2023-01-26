@@ -24,6 +24,10 @@ namespace DataModel
             }
             set
             {
+                if (value < 0)
+                {
+                    throw new ArgumentException("ID ne sme biti manji od nule!");
+                }
                 _ID = value;
             }
         }
@@ -35,6 +39,15 @@ namespace DataModel
             }
             set
             {
+                if (value == "")
+                {
+                    throw new ArgumentException("Ime ne sme biti prazno!");
+                }
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Ime ne sme biti null");
+                }
+
                 _ImeKorisnika = value;
             }
         }
@@ -47,6 +60,14 @@ namespace DataModel
             }
             set
             {
+                if (value == "")
+                {
+                    throw new ArgumentException("Prezime ne sme biti prazno!");
+                }
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Prezime ne sme biti null");
+                }
                 _PrezimeKorisnika = value;
             }
         }
@@ -59,6 +80,14 @@ namespace DataModel
             }
             set
             {
+                if (value == "")
+                {
+                    throw new ArgumentException("Ulica ne sme biti prazna!");
+                }
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Ulica ne sme biti null");
+                }
                 _Ulica = value;
             }
         }
@@ -71,6 +100,10 @@ namespace DataModel
             }
             set
             {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Broj ne sme biti manji od nule!");
+                }
                 _Broj = value;
             }
         }
@@ -82,6 +115,10 @@ namespace DataModel
             }
             set
             {
+                if (value < 10_000 || value > 39_000)
+                {
+                    throw new ArgumentException("Postanski broj van opsega!");
+                }
                 _PostanskiBroj = value;
             }
         }
@@ -96,15 +133,60 @@ namespace DataModel
                 _Grad = value;
             }
         }
+
         public Brojilo(int iD, string imeKorisnika, string prezimeKorisnika, string ulica, int broj, int postanskiBroj, string grad)
         {
+            if(iD < 0)
+            {
+                throw new ArgumentException("ID ne sme biti manji od nule!");
+            }
             _ID = iD;
-            _ImeKorisnika = imeKorisnika ?? throw new ArgumentNullException(nameof(imeKorisnika));
-            _PrezimeKorisnika = prezimeKorisnika ?? throw new ArgumentNullException(nameof(prezimeKorisnika));
-            _Ulica = ulica ?? throw new ArgumentNullException(nameof(ulica));
+            if(imeKorisnika == "")
+            {
+                throw new ArgumentException("Ime ne sme biti prazno!");
+            }
+            if(imeKorisnika == null)
+            {
+                throw new ArgumentNullException("Ime ne sme biti null");
+            }
+            _ImeKorisnika = imeKorisnika;
+            if (prezimeKorisnika == "")
+            {
+                throw new ArgumentException("Prezime ne sme biti prazno!");
+            }
+            if (prezimeKorisnika == null)
+            {
+                throw new ArgumentNullException("Prezime ne sme biti null");
+            }
+            _PrezimeKorisnika = prezimeKorisnika;
+            if (ulica == "")
+            {
+                throw new ArgumentException("Ulica ne sme biti prazna!");
+            }
+            if (ulica == null)
+            {
+                throw new ArgumentNullException("Ulica ne sme biti null");
+            }
+            _Ulica = ulica;
+            if(broj < 0)
+            {
+                throw new ArgumentException("Broj mora biti veci od nule!");
+            }
             _Broj = broj;
+            if(postanskiBroj < 10_000 || postanskiBroj > 39_000)
+            {
+                throw new ArgumentException("Postanski broj van opsega!");
+            }
             _PostanskiBroj = postanskiBroj;
-            _Grad = grad ?? throw new ArgumentNullException(nameof(grad));
+            if (grad == "")
+            {
+                throw new ArgumentException("Grad ne sme biti prazan!");
+            }
+            if (grad == null)
+            {
+                throw new ArgumentNullException("Grad ne sme biti null");
+            }
+            _Grad = grad;
         }
 
         public override string ToString()
