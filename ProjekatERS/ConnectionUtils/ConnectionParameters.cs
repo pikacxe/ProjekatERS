@@ -9,7 +9,7 @@ namespace ConnectionUtils
 {
     public class ConnectionParameters : IDisposable
     {
-        private static string connectionString = "Data Source=spasic.co.rs,25565;Initial Catalog=ERS_projekat;User ID=ers_projekat;Password=radimo123.";
+        private static string connectionString = "";
         private static SqlConnection instance;
 
 
