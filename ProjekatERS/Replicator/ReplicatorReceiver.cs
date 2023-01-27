@@ -10,19 +10,32 @@ using System.Threading;
 
 namespace Replicator
 {
-    public class ReplicatorReceiver
+    public class ReplicatorReceiver:IReplicatorReceiver
     {
-
-        private List<Potrosnja> potrosnje;
+        
+        private List<IPotrosnja> potrosnje;
         private List<Reader.Reader> readers;
         private int period;
         private Thread thread;
-        public ReplicatorReceiver(int numOfReaders,int second)
+
+        public List<IPotrosnja> Potrosnje { get;}
+        public List<Reader.Reader> Readers { get;}
+        public Thread Thread { get; }
+
+        public ReplicatorReceiver(int numOfReaders, int second)
         {
-            potrosnje = new List<Potrosnja>();
+            potrosnje = new List<IPotrosnja>();
             readers = new List<Reader.Reader>();
+            if (second < 0)
+            {
+                throw new ArgumentException("Perioda ne sme biti manja od nule!");
+            }
             period = second;
-            for(int i = 0; i < numOfReaders; i++)
+            if (numOfReaders <= 0)
+            {
+                throw new ArgumentException("Broj reader-a ne sme biti manji od jedan!");
+            }
+            for (int i = 0; i < numOfReaders; i++)
             {
                 readers.Add(new Reader.Reader());
             }
@@ -30,37 +43,32 @@ namespace Replicator
             thread.Start();
         }
 
-        public void GetPotrosnja(Potrosnja potrosnja)
+        public ReplicatorReceiver()
         {
-            try
+        }
+
+        public void AddPotrosnja(IPotrosnja potrosnja)
+        {
+
+            if (potrosnja == null)
             {
-                if (potrosnja == null)
-                {
-                    throw new ArgumentNullException("Potrosnja ne sme biti null");
-                }
-                potrosnje.Add(potrosnja);
+                throw new ArgumentNullException("Potrosnja ne sme biti null");
             }
-            catch (ArgumentNullException ex)
+            else
             {
-                Console.WriteLine(ex.Message);
+                potrosnje.Add(potrosnja);
             }
         }
 
+
         public void SavePotrosnja()
         {
-            try
+            if (potrosnje.Count > 0)
             {
-                if (potrosnje.Count > 0)
-                {
-                    Random random = new Random();
-                    int i = random.Next(0, readers.Count);
-                    readers[i].SavePotrosnja(potrosnje[0]);
-                    potrosnje.RemoveAt(0);
-                }
-            }
-            catch (ArgumentNullException ex)
-            {
-                Console.WriteLine(ex.Message);
+                Random random = new Random();
+                int i = random.Next(0, readers.Count);
+                readers[i].SavePotrosnja(potrosnje[0]);
+                potrosnje.RemoveAt(0);
             }
         }
 
@@ -77,6 +85,30 @@ namespace Replicator
         public void StopThread()
         {
             thread.Abort();
+        }
+
+        public int ReadersCount()
+        {
+            return readers.Count;
+        }
+
+        public int GetPerioda() 
+        {
+            return period;
+        }
+
+        public void SetPerioda(int perioda)
+        {
+            if (perioda < 0)
+            {
+                throw new ArgumentException("Perioda ne sme biti manja od nule!");
+            }
+            period = perioda;
+        }
+
+        public int ReaderCount()
+        {
+            throw new NotImplementedException();
         }
     }
 }

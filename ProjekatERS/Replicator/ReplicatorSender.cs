@@ -20,7 +20,7 @@ namespace Replicator
         {
             Potrosnja potr = new Potrosnja(id, potrosnja, DateTime.Now.Month);
 
-            recv.GetPotrosnja(potr);
+            recv.AddPotrosnja(potr);
         }
 
     }

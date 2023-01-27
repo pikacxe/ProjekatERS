@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataModel
 {
-    public class Potrosnja
+    public class Potrosnja:IPotrosnja
     {
         private int _IDB;
         private double _PotrosnjaB;
@@ -35,7 +35,7 @@ namespace DataModel
         {
             _IDB = 0;
             _PotrosnjaB = 0;
-            _Mesec = 0;
+            _Mesec = 1;
         }
         
         public int IDB

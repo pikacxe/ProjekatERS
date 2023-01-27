@@ -68,6 +68,20 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataModel\DataModel.csproj">
+      <Project>{16ae4815-2974-49cf-8436-0e242401d686}</Project>
+      <Name>DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reader\Reader.csproj">
+      <Project>{78ECFB85-58B7-433B-A303-932FF2C3772C}</Project>
+      <Name>Reader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Replicator\Replicator.csproj">
+      <Project>{1ea47e29-7846-461c-b780-ddb29db73ac3}</Project>
+      <Name>Replicator</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

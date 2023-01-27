@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Brojilo.cs" />
     <Compile Include="ConnectionParameters.cs" />
+    <Compile Include="IBrojilo.cs" />
+    <Compile Include="IPotrosnja.cs" />
     <Compile Include="Potrosnja.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

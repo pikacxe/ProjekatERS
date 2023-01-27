@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataModel
 {
-    public class Brojilo
+    public class Brojilo : IBrojilo
     {
         private int _ID;
         private string _ImeKorisnika;

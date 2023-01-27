@@ -58,7 +58,7 @@ namespace Reader
                 return (int)comm.ExecuteScalar();
             }
         }
-        public void SavePotrosnja(Potrosnja potrosnja)
+        public void SavePotrosnja(IPotrosnja potrosnja)
         {
             if(potrosnja == null)
             {
