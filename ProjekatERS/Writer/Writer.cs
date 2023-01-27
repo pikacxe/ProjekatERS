@@ -9,10 +9,13 @@ using Replicator;
 
 namespace Writer
 {
-    public class Writer
+    public class Writer : IWriter
     {
         private bool stanje;
-        private ReplicatorSender sender;
+        private IReplicatorSender sender;
+
+        public IReplicatorSender Sender { get => sender; }
+        public bool Stanje { get => stanje; }
 
         public void Ukljuci()
         {
@@ -23,12 +26,8 @@ namespace Writer
         {
             stanje = false;
         }
-        public bool getStanje()
-        {
-            return stanje;
-        }
 
-        public Writer(ReplicatorSender sender)
+        public Writer(IReplicatorSender sender)
         {
             stanje = false;
             this.sender = sender;
@@ -36,27 +35,20 @@ namespace Writer
 
         public void AcceptPotrosnja(int id, double potrosnja)
         {
-            try
+            if (!stanje)
             {
-                if (!stanje)
-                {
-                    throw new Exception("Writer trenutno nije ukljucen. Ukljucite pre koriscenja.");
-                }
-                if (id < 0)
-                {
-                    throw new ArgumentException("Id nije validan.");
-                }
-                if (potrosnja < 0)
-                {
-                    throw new ArgumentException("Potrosnja nije validna.");
-                }
-                sender.GetData(id, potrosnja);
+                throw new InvalidOperationException("Writer trenutno nije ukljucen. Ukljucite pre koriscenja.");
+            }
+            if (id < 0)
+            {
+                throw new ArgumentException("Id nije validan.");
+            }
+            if (potrosnja < 0)
+            {
+                throw new ArgumentException("Potrosnja nije validna.");
+            }
+            sender.GetData(id, potrosnja);
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
         }
     }
 }

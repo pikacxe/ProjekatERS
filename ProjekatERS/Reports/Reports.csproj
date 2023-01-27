@@ -41,10 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IReports.cs" />
     <Compile Include="Reports.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConnectionUtils\ConnectionUtils.csproj">
+      <Project>{E59C1F9F-FBE9-4BAF-BADD-367069F411D4}</Project>
+      <Name>ConnectionUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
       <Project>{16ae4815-2974-49cf-8436-0e242401d686}</Project>
       <Name>DataModel</Name>

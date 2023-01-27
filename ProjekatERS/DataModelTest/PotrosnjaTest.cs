@@ -38,8 +38,6 @@ namespace DataModelTest
         [TestCase(-1,200.2,3)]  // Los IDB
         [TestCase(123,-200,4)]  // Losa potrosnja
         [TestCase(12,-1,5)]     // Losa potrosnja
-        [TestCase(1,100,14)]    // Los mesec
-        [TestCase(1,100,-15)]   // Los mesec
         public void PotrosnjaKonstruktorLosiParametri(int id, double potrosnja, int mesec)
         {
             Assert.Throws<ArgumentException>(() => {
@@ -47,6 +45,17 @@ namespace DataModelTest
             }
             );
             
+        }
+        [Test]
+        [TestCase(1, 100, 14)]    // Los mesec
+        [TestCase(1, 100, -15)]   // Los mesec
+        public void PotrosnjaKonstruktorLosiParametriRange(int id, double potrosnja, int mesec)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => {
+                Potrosnja p = new Potrosnja(id, potrosnja, mesec);
+            }
+            );
+
         }
     }
 }

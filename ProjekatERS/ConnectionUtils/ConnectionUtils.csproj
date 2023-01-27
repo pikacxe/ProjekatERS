@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F52E820-4E9E-4B91-9FDA-16813C2C08F7}</ProjectGuid>
+    <ProjectGuid>{E59C1F9F-FBE9-4BAF-BADD-367069F411D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Writer</RootNamespace>
-    <AssemblyName>Writer</AssemblyName>
+    <RootNamespace>ConnectionUtils</RootNamespace>
+    <AssemblyName>ConnectionUtils</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,18 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IWriter.cs" />
-    <Compile Include="Writer.cs" />
+    <Compile Include="ConnectionParameters.cs" />
+    <Compile Include="ParameterUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Replicator\Replicator.csproj">
-      <Project>{1ea47e29-7846-461c-b780-ddb29db73ac3}</Project>
-      <Name>Replicator</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

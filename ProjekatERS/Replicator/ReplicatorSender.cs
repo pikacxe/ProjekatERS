@@ -7,20 +7,26 @@ using DataModel;
 
 namespace Replicator
 {
-    public class ReplicatorSender
+    public class ReplicatorSender : IReplicatorSender
     {
-        private ReplicatorReceiver recv;
-
-        public ReplicatorSender(ReplicatorReceiver receiver)
+        private IReplicatorReceiver recv;
+        public IReplicatorReceiver Recv { get => recv; }
+        public ReplicatorSender(IReplicatorReceiver receiver)
         {
             recv =receiver;
         }
 
         public void GetData(int id, double potrosnja)
         {
-            Potrosnja potr = new Potrosnja(id, potrosnja, DateTime.Now.Month);
-
-            recv.AddPotrosnja(potr);
+            try
+            {
+                IPotrosnja potr = new Potrosnja(id, potrosnja, DateTime.Now.Month);
+                recv.AddPotrosnja(potr);
+            }
+            catch(ArgumentException ae)
+            {
+                Console.WriteLine("[ERROR] " + ae.Message);
+            }
         }
 
     }

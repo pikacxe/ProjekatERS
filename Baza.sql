@@ -11,9 +11,11 @@ create table Brojilo(
 	);
 
 create table Potrosnja(
-	IDB int not null unique,
+	IDB int not null ,
 	Potrosnja float,
 	Mesec int not null,
-	constraint pk_potrosnja primary key (IDB),
+	constraint pk_potrosnja primary key (IDB,Mesec),
 	constraint fk_potrosnja foreign key(IDB) references Brojilo(ID) on delete cascade
 );
+
+drop table Potrosnja;

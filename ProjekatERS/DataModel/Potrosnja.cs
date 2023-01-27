@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataModel
 {
-    public class Potrosnja:IPotrosnja
+    public class Potrosnja : IPotrosnja
     {
         private int _IDB;
         private double _PotrosnjaB;
@@ -26,7 +26,7 @@ namespace DataModel
             _PotrosnjaB = potrosnjaB;
             if (mesec <= 0 || mesec > 12)
             {
-                throw new ArgumentException("Mesec mora biti u opsegu 1-12!");
+                throw new ArgumentOutOfRangeException("Mesec mora biti u opsegu 1-12!");
             }
             _Mesec = mesec;
         }
@@ -81,7 +81,7 @@ namespace DataModel
             {
                 if (value <= 0 && value > 12)
                 {
-                    throw new ArgumentException("Mesec mora biti u opsegu 1-12!");
+                    throw new ArgumentOutOfRangeException("Mesec mora biti u opsegu 1-12!");
                 }
                 _Mesec = value;
             }
@@ -89,8 +89,12 @@ namespace DataModel
 
         public override string ToString()
         {
-            return "\nID brojila: " + _IDB.ToString() + "\nMesec: " +
-                    _Mesec.ToString() + "\nPotrosnja: " + _PotrosnjaB.ToString() + "\n";
+            return string.Format("{0,6}\t{1,10}\t{2,6}", _IDB, _PotrosnjaB, _Mesec);
+        }
+
+        public static string GetFormattedHeader()
+        {
+            return string.Format("{0,6}\t{1,10}\t{2,6}", "IDB", "POTROSNJA", "MESEC");
         }
     }
 }

@@ -14,18 +14,18 @@ namespace Replicator
     {
         
         private List<IPotrosnja> potrosnje;
-        private List<Reader.Reader> readers;
+        private List<IReader> readers;
         private int period;
         private Thread thread;
 
-        public List<IPotrosnja> Potrosnje { get;}
-        public List<Reader.Reader> Readers { get;}
-        public Thread Thread { get; }
+        public List<IPotrosnja> Potrosnje { get => potrosnje;}
+        public List<IReader> Readers { get => readers;}
+        public Thread Thread { get => thread; }
 
         public ReplicatorReceiver(int numOfReaders, int second)
         {
             potrosnje = new List<IPotrosnja>();
-            readers = new List<Reader.Reader>();
+            readers = new List<IReader>();
             if (second < 0)
             {
                 throw new ArgumentException("Perioda ne sme biti manja od nule!");
@@ -67,8 +67,16 @@ namespace Replicator
             {
                 Random random = new Random();
                 int i = random.Next(0, readers.Count);
-                readers[i].SavePotrosnja(potrosnje[0]);
+                try
+                {
+                    readers[i].SavePotrosnja(potrosnje[0]);
+                }
+                catch(ArgumentNullException ane)
+                {
+                    Console.WriteLine("[ERROR] " + ane.Message);
+                }
                 potrosnje.RemoveAt(0);
+                Console.WriteLine("\n(periodicno upisivanje podataka izvrseno)\n");
             }
         }
 
@@ -87,11 +95,6 @@ namespace Replicator
             thread.Abort();
         }
 
-        public int ReadersCount()
-        {
-            return readers.Count;
-        }
-
         public int GetPerioda() 
         {
             return period;
@@ -103,12 +106,11 @@ namespace Replicator
             {
                 throw new ArgumentException("Perioda ne sme biti manja od nule!");
             }
-            period = perioda;
-        }
-
-        public int ReaderCount()
-        {
-            throw new NotImplementedException();
+            else
+            {
+                period = perioda;
+                Console.WriteLine("Perioda upisa uspesno promenjena!");
+            }
         }
     }
 }

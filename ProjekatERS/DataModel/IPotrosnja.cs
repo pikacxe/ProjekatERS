@@ -11,5 +11,6 @@ namespace DataModel
         int IDB { get; set; }
         int Mesec { get; set; }
         double PotrosnjaB { get; set; }
+        string ToString();
     }
 }

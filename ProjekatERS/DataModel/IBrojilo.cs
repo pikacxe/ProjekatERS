@@ -16,5 +16,7 @@ namespace DataModel
         int PostanskiBroj { get; set; }
         string Grad { get; set; }
 
+        string ToString();
+
     }
 }

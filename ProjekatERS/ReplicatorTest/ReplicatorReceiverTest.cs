@@ -7,6 +7,8 @@ using Moq;
 using NUnit.Framework;
 using DataModel;
 using Replicator;
+using System.Threading;
+using Reader;
 
 namespace ReplicatorTest
 {
@@ -16,6 +18,7 @@ namespace ReplicatorTest
 
         private IPotrosnja potrosnja1 = null;
         private IReplicatorReceiver receiver = null;
+        private void ThreadTest() { }
         [SetUp]
         public void Setup()
         {
@@ -26,10 +29,12 @@ namespace ReplicatorTest
             potrosnja1 = mock.Object;
 
             Mock<IReplicatorReceiver> mock1 = new Mock<IReplicatorReceiver>();
-            mock1.Setup(x => x.Readers).Returns(new List<Reader.Reader>());
+            mock1.Setup(x => x.Readers).Returns(new List<IReader>());
             mock1.Setup(x => x.Potrosnje).Returns(new List<IPotrosnja>());
             mock1.Setup(x => x.GetPerioda()).Returns(1);
-            // mock1.Setup(x => x.Thread).Returns(new Thread);
+            mock1.Setup(x => x.Thread).Returns(new Thread(ThreadTest));
+            receiver = mock1.Object;
+            receiver.Thread.Start();
         }
 
 
@@ -41,7 +46,7 @@ namespace ReplicatorTest
         public void ReplicatorReceiverKonsturktorDobriParametri(int numOfReaders, int second)
         {
             ReplicatorReceiver r = new ReplicatorReceiver(numOfReaders, second);
-            Assert.AreEqual(numOfReaders, r.ReadersCount());
+            Assert.AreEqual(numOfReaders, r.Readers.Count);
             Assert.AreEqual(second, r.GetPerioda());
         }
 
@@ -53,7 +58,7 @@ namespace ReplicatorTest
         public void ReplicatorReceiverKonsturktorGranicniParametri(int numOfReaders, int second)
         {
             ReplicatorReceiver r = new ReplicatorReceiver(numOfReaders, second);
-            Assert.AreEqual(numOfReaders, r.ReadersCount());
+            Assert.AreEqual(numOfReaders, r.Readers.Count);
             Assert.AreEqual(second, r.GetPerioda());
         }
 
@@ -106,6 +111,14 @@ namespace ReplicatorTest
                 r.SetPerioda(perioda);
             }
             );
+        }
+
+        [Test]
+        public void StopThreadTest()
+        {
+            receiver.StopThread();
+            Assert.AreEqual(false, receiver.Thread.IsAlive);
+            Assert.AreEqual(ThreadState.Stopped, receiver.Thread.ThreadState);
         }
     }
 }

@@ -175,7 +175,7 @@ namespace DataModel
             _Broj = broj;
             if(postanskiBroj < 10_000 || postanskiBroj > 39_000)
             {
-                throw new ArgumentException("Postanski broj van opsega!");
+                throw new ArgumentOutOfRangeException("Postanski broj van opsega!");
             }
             _PostanskiBroj = postanskiBroj;
             if (grad == "")

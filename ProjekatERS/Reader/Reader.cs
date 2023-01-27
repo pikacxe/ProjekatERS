@@ -2,43 +2,47 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using DataModel;
-using System.Data.SqlClient;
-
+using System.Data;
+using ConnectionUtils;
 
 namespace Reader
 {
-    public class Reader
+    public class Reader : IReader
     {
-        public Reader()
-        {
-
-        }
         public IEnumerable<Potrosnja> ReadPotrosnjaBrojila(int idp)
         {
             if (idp <= 0)
             {
-                throw new ArgumentNullException("ID mora biti veci od 0");
+                throw new ArgumentException("ID mora biti veci od 0");
             }
             string query = "select * from Potrosnja where IDB = @id";
             List<Potrosnja> potrosnje = new List<Potrosnja>();
-            using (SqlConnection conn = ConnectionParameters.GetConnection())
+            using (IDbConnection conn = ConnectionParameters.GetConnection())
             {
                 conn.Open();
-                using (SqlCommand comm = conn.CreateCommand())
+                using (IDbCommand comm = conn.CreateCommand())
                 {
                     comm.CommandText = query;
-                    comm.Parameters.AddWithValue("id", idp);
-                    using (SqlDataReader reader = comm.ExecuteReader())
+                    ParameterUtil.AddParameter(comm,"id", DbType.Int32);
+                    comm.Prepare();
+                    ParameterUtil.SetParameterValue(comm, "id", idp);
+                    using (IDataReader reader = comm.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Potrosnja p = new Potrosnja();
-                            p.IDB = reader.GetInt32(0);
-                            p.PotrosnjaB = reader.GetDouble(1);
-                            p.Mesec = reader.GetInt32(2);
-                            potrosnje.Add(p);
+                            try
+                            {
+                                Potrosnja p = new Potrosnja();
+                                p.IDB = reader.GetInt32(0);
+                                p.PotrosnjaB = reader.GetDouble(1);
+                                p.Mesec = reader.GetInt32(2);
+                                potrosnje.Add(p);
+                            }
+                            catch(Exception e)
+                            {
+                                Console.WriteLine("[ERROR] " + e.Message);
+                            }
                         }
                         return potrosnje;
                     }
@@ -48,17 +52,27 @@ namespace Reader
 
         }
 
-        private int ExistsById(int id, SqlConnection conn)
+        public int ExistsById(int id, IDbConnection conn)
         {
+            if(id <= 0)
+            {
+                throw new ArgumentException("ID mora biti veci od 0");
+            }
+            if(conn == null)
+            {
+                throw new ArgumentNullException("Konekcija ne sme biti null!");
+            }
             string query = "select count(IDB) from Potrosnja where IDB = @id";
-            using (SqlCommand comm = conn.CreateCommand())
+            using (IDbCommand comm = conn.CreateCommand())
             {
                 comm.CommandText = query;
-                comm.Parameters.AddWithValue("id", id);
+                ParameterUtil.AddParameter(comm, "id", DbType.Int32);
+                comm.Prepare();
+                ParameterUtil.SetParameterValue(comm, "id", id);
                 return (int)comm.ExecuteScalar();
             }
         }
-        public void SavePotrosnja(IPotrosnja potrosnja)
+        public int SavePotrosnja(IPotrosnja potrosnja)
         {
             if(potrosnja == null)
             {
@@ -66,16 +80,20 @@ namespace Reader
             }
             string inser_query = "insert into Potrosnja(Potrosnja,Mesec,IDB) values ( @potrosnja, @mesec, @id)";
             string update_query = "update Potrosnja set Potrosnja=@potrosnja, Mesec=@mesec where IDB = @id";
-            using (SqlConnection conn = ConnectionParameters.GetConnection())
+            using (IDbConnection conn = ConnectionParameters.GetConnection())
             {
                 conn.Open();
-                using (SqlCommand comm = conn.CreateCommand())
+                using (IDbCommand comm = conn.CreateCommand())
                 {
                     comm.CommandText = ExistsById(potrosnja.IDB, conn) == 1 ? update_query : inser_query;
-                    comm.Parameters.AddWithValue("potrosnja", potrosnja.PotrosnjaB);
-                    comm.Parameters.AddWithValue("mesec", potrosnja.Mesec);
-                    comm.Parameters.AddWithValue("id", potrosnja.IDB);
-                    comm.ExecuteNonQuery();
+                    ParameterUtil.AddParameter(comm, "potrosnja", DbType.Double);
+                    ParameterUtil.AddParameter(comm, "mesec", DbType.Int32);
+                    ParameterUtil.AddParameter(comm, "id", DbType.Int32);
+                    comm.Prepare();
+                    ParameterUtil.SetParameterValue(comm,"potrosnja", potrosnja.PotrosnjaB);
+                    ParameterUtil.SetParameterValue(comm,"mesec", potrosnja.Mesec);
+                    ParameterUtil.SetParameterValue(comm, "id", potrosnja.IDB);
+                    return comm.ExecuteNonQuery();
                 }
             }
         }

@@ -42,14 +42,12 @@ namespace DataModelTest
         }
 
         [Test]
-        [TestCase(1, "", "Markovic", "Danila Kisa", 11, 21000, "Novi Sad")]
-        [TestCase(1, "Marko", "", "Danila Kisa", 11, 21000, "Novi Sad")]
-        [TestCase(1, "Marko", "Markovic", "", 11, 21000, "Novi Sad")]
-        [TestCase(1, "Marko", "Markovic", "Danila Kisa", 11, 21000, "")]
-        [TestCase(1, "Marko", "Markovic", "Danila Kisa", 11, 1, "Novi Sad")]
-        [TestCase(1, "Marko", "Markovic", "Danila Kisa", 11, 4000000, "Novi Sad")]
-        [TestCase(-1, "Marko", "Markovic", "Danila Kisa", 11, 21000, "Novi Sad")]
-        [TestCase(1, "Marko", "Markovic", "Danila Kisa", -100, 21000, "Novi Sad")]
+        [TestCase(1, "", "Markovic", "Danila Kisa", 11, 21000, "Novi Sad")]     // Prazno ime
+        [TestCase(1, "Marko", "", "Danila Kisa", 11, 21000, "Novi Sad")]        // Prazno prezime
+        [TestCase(1, "Marko", "Markovic", "", 11, 21000, "Novi Sad")]           // Prazna ulica
+        [TestCase(1, "Marko", "Markovic", "Danila Kisa", 11, 21000, "")]        // Prazan grad
+        [TestCase(-1, "Marko", "Markovic", "Danila Kisa", 11, 21000, "Novi Sad")]   // Los ID
+        [TestCase(1, "Marko", "Markovic", "Danila Kisa", -100, 21000, "Novi Sad")]  // Los broj ulice
         public void BrojiloKonsturktorLosiParametri(int iD, string imeKorisnika, string prezimeKorisnika, string ulica, int broj, int postanskiBroj, string grad)
         {
             Assert.Throws<ArgumentException>(() =>
@@ -59,13 +57,23 @@ namespace DataModelTest
         }
 
         [Test]
-        [TestCase(1, null, "Markovic", "Danila Kisa", 11, 21000, "Novi Sad")]
-        [TestCase(1, "Marko", null, "Danila Kisa", 11, 21000, "Novi Sad")]
-        [TestCase(1, "Marko", "Markovic", null, 11, 21000, "Novi Sad")]
-        [TestCase(1, "Marko", "Markovic", "Danila Kisa", 11, 21000, null)]
+        [TestCase(1, null, "Markovic", "Danila Kisa", 11, 21000, "Novi Sad")]       // Ime null
+        [TestCase(1, "Marko", null, "Danila Kisa", 11, 21000, "Novi Sad")]          // Prezime null
+        [TestCase(1, "Marko", "Markovic", null, 11, 21000, "Novi Sad")]             // Ulica null
+        [TestCase(1, "Marko", "Markovic", "Danila Kisa", 11, 21000, null)]          // Grad null
         public void BrojiloKonsturktorLosiParametriNull(int iD, string imeKorisnika, string prezimeKorisnika, string ulica, int broj, int postanskiBroj, string grad)
         {
             Assert.Throws<ArgumentNullException>(() =>
+            {
+                Brojilo b = new Brojilo(iD, imeKorisnika, prezimeKorisnika, ulica, broj, postanskiBroj, grad);
+            });
+        }
+        [Test]
+        [TestCase(1, "Marko", "Markovic", "Danila Kisa", 11, 1, "Novi Sad")]        // Postanski broj van opsega
+        [TestCase(1, "Marko", "Markovic", "Danila Kisa", 11, 4000000, "Novi Sad")]  // Postanski broj van opsega
+        public void BrojiloKonsturktorLosiParametriRange(int iD, string imeKorisnika, string prezimeKorisnika, string ulica, int broj, int postanskiBroj, string grad)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
                 Brojilo b = new Brojilo(iD, imeKorisnika, prezimeKorisnika, ulica, broj, postanskiBroj, grad);
             });

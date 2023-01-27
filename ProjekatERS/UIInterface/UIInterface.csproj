@@ -58,6 +58,10 @@
       <Project>{1ea47e29-7846-461c-b780-ddb29db73ac3}</Project>
       <Name>Replicator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reports\Reports.csproj">
+      <Project>{f6dd2385-ff7f-4ffc-b81f-53ea0a06af46}</Project>
+      <Name>Reports</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Writer\Writer.csproj">
       <Project>{9f52e820-4e9e-4b91-9fda-16813c2c08f7}</Project>
       <Name>Writer</Name>
