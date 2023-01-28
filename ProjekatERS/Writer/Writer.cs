@@ -29,8 +29,15 @@ namespace Writer
 
         public Writer(IReplicatorSender sender)
         {
-            stanje = false;
-            this.sender = sender;
+            if (sender == null)
+            {
+                throw new ArgumentNullException("Sender ne sme biti null.");
+            }
+            else
+            {
+                stanje = false;
+                this.sender = sender;
+            }
         }
 
         public void AcceptPotrosnja(int id, double potrosnja)
@@ -39,7 +46,7 @@ namespace Writer
             {
                 throw new InvalidOperationException("Writer trenutno nije ukljucen. Ukljucite pre koriscenja.");
             }
-            if (id < 0)
+            if (id <= 0)
             {
                 throw new ArgumentException("Id nije validan.");
             }

@@ -67,6 +67,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Replicator\Replicator.csproj">
+      <Project>{1EA47E29-7846-461C-B780-DDB29DB73AC3}</Project>
+      <Name>Replicator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Writer\Writer.csproj">
+      <Project>{9F52E820-4E9E-4B91-9FDA-16813C2C08F7}</Project>
+      <Name>Writer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
