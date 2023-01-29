@@ -28,7 +28,7 @@ namespace ReaderTest
 
             var moq2 = new Mock<IPotrosnja>();
             moq2.Setup(x => x.IDB).Returns(12345);
-            moq2.Setup(x => x.Mesec).Returns(12345);
+            moq2.Setup(x => x.Mesec).Returns(11);
             moq2.Setup(x => x.PotrosnjaB).Returns(12345);
             potrosnja = moq2.Object;
 
