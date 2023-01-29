@@ -52,23 +52,29 @@ namespace Reader
 
         }
 
-        public int ExistsById(int id, IDbConnection conn)
+        public int ExistsById(int id,int mesec,IDbConnection conn)
         {
             if(id <= 0)
             {
                 throw new ArgumentException("ID mora biti veci od 0");
             }
+            if(mesec <= 0 || mesec > 12)
+            {
+                throw new ArgumentOutOfRangeException("Mesec je van opsega");
+            }
             if(conn == null)
             {
                 throw new ArgumentNullException("Konekcija ne sme biti null!");
             }
-            string query = "select count(IDB) from Potrosnja where IDB = @id";
+            string query = "select count(IDB) from Potrosnja where IDB = @id and Mesec = @mesec";
             using (IDbCommand comm = conn.CreateCommand())
             {
                 comm.CommandText = query;
                 ParameterUtil.AddParameter(comm, "id", DbType.Int32);
+                ParameterUtil.AddParameter(comm,"mesec",DbType.Int32);
                 comm.Prepare();
                 ParameterUtil.SetParameterValue(comm, "id", id);
+                ParameterUtil.SetParameterValue(comm, "mesec", mesec);
                 return (int)comm.ExecuteScalar();
             }
         }
@@ -78,14 +84,14 @@ namespace Reader
             {
                 throw new ArgumentNullException("Potrosnja ne sme biti null!");
             }
-            string inser_query = "insert into Potrosnja(Potrosnja,Mesec,IDB) values ( @potrosnja, @mesec, @id)";
-            string update_query = "update Potrosnja set Potrosnja=@potrosnja, Mesec=@mesec where IDB = @id";
+            string insert_query = "insert into Potrosnja(Potrosnja,Mesec,IDB) values ( @potrosnja, @mesec, @id)";
+            string update_query = "update Potrosnja set Potrosnja=@potrosnja where Mesec=@mesec and IDB = @id ";
             using (IDbConnection conn = ConnectionParameters.GetConnection())
             {
                 conn.Open();
                 using (IDbCommand comm = conn.CreateCommand())
                 {
-                    comm.CommandText = ExistsById(potrosnja.IDB, conn) == 1 ? update_query : inser_query;
+                    comm.CommandText = ExistsById(potrosnja.IDB,potrosnja.Mesec,conn) == 1 ? update_query : insert_query;
                     ParameterUtil.AddParameter(comm, "potrosnja", DbType.Double);
                     ParameterUtil.AddParameter(comm, "mesec", DbType.Int32);
                     ParameterUtil.AddParameter(comm, "id", DbType.Int32);

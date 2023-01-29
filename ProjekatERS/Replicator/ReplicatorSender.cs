@@ -13,20 +13,32 @@ namespace Replicator
         public IReplicatorReceiver Recv { get => recv; }
         public ReplicatorSender(IReplicatorReceiver receiver)
         {
-            recv =receiver;
+            if (receiver == null)
+            {
+                throw new ArgumentNullException("Reciver ne sme biti null!");
+            }
+            else
+            {
+                recv =receiver;
+            }
         }
 
         public void GetData(int id, double potrosnja)
         {
-            try
+            if (id <=0)
+            {
+                throw new ArgumentException("ID brojila ne sme biti manji od nule!");
+            }
+            if (potrosnja < 0)
+            {
+                throw new ArgumentException("Potrosnja ne sme biti manja od nule!");
+            }
+            else
             {
                 IPotrosnja potr = new Potrosnja(id, potrosnja, DateTime.Now.Month);
                 recv.AddPotrosnja(potr);
             }
-            catch(ArgumentException ae)
-            {
-                Console.WriteLine("[ERROR] " + ae.Message);
-            }
+           
         }
 
     }

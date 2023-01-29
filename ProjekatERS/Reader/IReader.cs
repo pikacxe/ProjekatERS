@@ -11,7 +11,7 @@ namespace Reader
     public interface IReader
     {
         IEnumerable<Potrosnja> ReadPotrosnjaBrojila(int idp);
-        int ExistsById(int id, IDbConnection conn);
+        int ExistsById(int id,int mesec,IDbConnection conn);
         int SavePotrosnja(IPotrosnja potrosnja);
     }
 }

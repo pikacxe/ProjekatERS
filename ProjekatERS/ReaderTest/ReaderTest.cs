@@ -60,27 +60,41 @@ namespace ReaderTest
         }
 
         [Test]
-        [TestCase(-7)]
-        [TestCase(-17)]
-        [TestCase(0)]
-        public void ExistsByIdTestLosiParametri(int id)
+        [TestCase(-7,5)]
+        [TestCase(-17,4)]
+        [TestCase(0,1)]
+        
+        public void ExistsByIdTestLosiParametri(int id,int mesec)
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                reader.ExistsById(id, conn);
+                reader.ExistsById(id,mesec,conn);
             });
         }
 
         [Test]
-        [TestCase(1,null)]
-        [TestCase(14, null)]
-        [TestCase(26, null)]
-        public void ExistsByIdTestLosiParametriNull(int id,IDbConnection conn)
+        [TestCase(7, -5)]
+        [TestCase(17, 14)]
+        [TestCase(2, 0)]
+
+        public void ExistsByIdTestLosiParametriRange(int id, int mesec)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                reader.ExistsById(id, mesec, conn);
+            });
+        }
+
+        [Test]
+        [TestCase(1,10,null)]
+        [TestCase(14,5,null)]
+        [TestCase(26,4,null)]
+        public void ExistsByIdTestLosiParametriNull(int id,int mesec,IDbConnection conn)
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
                 Reader.Reader r = new Reader.Reader();
-                r.ExistsById(id, conn);
+                r.ExistsById(id,mesec,conn);
             });
         }
 
