@@ -70,7 +70,7 @@ namespace UIInterface
 
         private static void PromeniPeriodu()
         {
-            Console.Write("Unesite novu periodu:");
+            Console.Write("Unesite novu periodu (sekunde):");
             int perioda;
             int.TryParse(Console.ReadLine(), out perioda);
             try
@@ -179,6 +179,11 @@ namespace UIInterface
         public static void UpaliWriter()
         {
             int i = 0;
+            if(writers.Count==0)
+            {
+                Console.WriteLine("Ne postoji ni jedan writer. Dodajte novi.");
+                return;
+            }
             foreach (var w in writers)
             {
                 Console.WriteLine("Writer[{0}]:{1}", i, w.Stanje ? "Ukljucen" : "Iskljucen");
@@ -200,6 +205,11 @@ namespace UIInterface
         public static void UgasiWriter()
         {
             int i=0;
+            if (writers.Count == 0)
+            {
+                Console.WriteLine("Ne postoji ni jedan writer. Dodajte novi.");
+                return;
+            }
             foreach (var w in writers)
             {
                 Console.WriteLine("Writer[{0}]:{1}",i,w.Stanje ? "Ukljucen" : "Iskljucen");
